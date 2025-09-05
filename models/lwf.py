@@ -221,6 +221,9 @@ class LwF(BaseLearner):
                 MU += gap
                 self._protos[:self._known_classes] = torch.tensor(MU).to(self._device)
 
+        test_acc = self._compute_accuracy(self._network, test_loader)
+        print(f"Task {self._cur_task} finished → Test Acc: {test_acc:.2f}%")
+
     # SDC for the prototypes
     def displacement(self, Y1, Y2, embedding_old, sigma):
         DY = (Y2 - Y1)
